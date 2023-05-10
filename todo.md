@@ -1,6 +1,10 @@
 # To Do
 - Set up external DB (PostgreSQL) using Amazon RDS
+    - create db tables 
 - Create python script to move data from web API to DB
+- clean up data using the csv as a guide
+    - clean up the array so they only have the relevant points
+    - replace unavailable data with proper nulls
 - Adapt jupyter notebook to use data from DB
     - use buckets to address extreme outliers
 
