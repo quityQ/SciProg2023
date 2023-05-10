@@ -1,8 +1,6 @@
-import tmdbsimple as tmdb
 import psycopg2
+import pandas as pd
 
-tmdb.API_KEY = "60dde32875c0d3c5679496aba9fb3465"
-tmdb.REQUESTS_TIMEOUT = 10
 
 connection = psycopg2.connect(user="bicicayb",
                               password="sIrAKRSC",
