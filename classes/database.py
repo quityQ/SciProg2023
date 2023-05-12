@@ -9,7 +9,6 @@ connection = psycopg2.connect(
     port="5432",
     database="postgres",
 )
-cursor = connection.cursor()
 engine = create_engine(
     "postgresql+psycopg2://bicicayb:sIrAKRSC@db-moviedata.cxqntpnwnjaq.eu-north-1.rds.amazonaws.com:5432/postgres"
 )
@@ -17,7 +16,7 @@ engine = create_engine(
 
 def testConnection():
     try:
-        cursor.open()
+        cursor = connection.cursor()
         print(connection.get_dsn_parameters(), "\n")
         cursor.execute("SELECT version();")
         record = cursor.fetchone()
@@ -25,8 +24,9 @@ def testConnection():
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to DB", error)
     finally:
-        if connection:
+        if cursor:
             cursor.close()
+        if connection:
             connection.close()
             print("PostgreSQL connection is closed")
 
@@ -46,6 +46,7 @@ def uploadMovieData(df):
 
 def createMoviesTable():
     try:
+        cursor = connection.cursor()
         create_table_query = """CREATE TABLE IF NOT EXISTS movies
               (id SERIAL PRIMARY KEY,
               title TEXT,
@@ -64,20 +65,21 @@ def createMoviesTable():
               vote_average FLOAT,
               vote_count INT,
               adult BOOLEAN); """
-        cursor.open()
         cursor.execute(create_table_query)
         connection.commit()
         print("Table created")
     except (Exception, psycopg2.Error) as error:
         print("Error while creating table", error)
     finally:
-        if connection:
+        if cursor:
             cursor.close()
+        if connection:
             connection.close()
             print("PostgreSQL connection is closed")
 
 def dropMoviesTable():
     try:
+        cursor = connection.cursor()
         cursor.open()
         drop_table_query = """DROP TABLE movies"""
         cursor.execute(drop_table_query)
@@ -86,7 +88,8 @@ def dropMoviesTable():
     except (Exception, psycopg2.Error) as error:
         print("Error while dropping table", error)
     finally:
+        if cursor:
+            cursor.close()  
         if connection:
-            cursor.close()
             connection.close()
             print("PostgreSQL connection is closed")

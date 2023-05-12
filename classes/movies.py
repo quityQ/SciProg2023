@@ -5,7 +5,7 @@ import datetime
 tmdb.API_KEY = "60dde32875c0d3c5679496aba9fb3465"
 tmdb.REQUESTS_TIMEOUT = 10
 
-day = str(datetime.datetime.now().day).zfill(2)
+day = str(datetime.datetime.now().day-1).zfill(2)
 month = str(datetime.datetime.now().month).zfill(2)
 year = str(datetime.datetime.now().year).zfill(4)
 
