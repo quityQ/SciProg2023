@@ -13,7 +13,7 @@ engine = create_engine(
     "postgresql+psycopg2://bicicayb:sIrAKRSC@db-moviedata.cxqntpnwnjaq.eu-north-1.rds.amazonaws.com:5432/postgres"
 )
 
-
+# Testing connectoin to DB
 def testConnection():
     try:
         cursor = connection.cursor()
