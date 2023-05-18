@@ -162,3 +162,4 @@ cython_debug/
 # vscode workspace files
 SciProg2023.code-workspace
 .vscode/
+.DS_Store
