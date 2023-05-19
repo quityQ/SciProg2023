@@ -1,4 +1,5 @@
 import ast
+import numpy as np
 
 #Some entries in the Dataset are given in JSON format
 #Here we extract the relevant parts of those lists (whatever name is given)
@@ -28,3 +29,14 @@ def extractDict(input):
             elif "name" in x:
                 outputList.append(x[1])
     return outputList
+
+
+def cleanup(df):
+    df["budget"] = df["budget"].replace(0, np.nan)
+    df["revenue"] = df["revenue"].replace(0, np.nan)
+    df["vote_average"] = df["vote_average"].replace(0, np.nan)
+    df["vote_count"] = df["vote_count"].replace(0,np.nan)
+    df["genres"] = df["genres"].apply(extractDict)
+    df["production_companies"] = df["production_companies"].apply(extractDict)
+    df["spoken_languages"] = df["spoken_languages"].apply(extractDict)
+    return df
