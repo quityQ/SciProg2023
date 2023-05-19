@@ -30,7 +30,7 @@ def extractDict(input):
                 outputList.append(x[1])
     return outputList
 
-
+#cleanup the dataframe by replacing 0 with NaN and making lists prettier
 def cleanup(df):
     df["budget"] = df["budget"].replace(0, np.nan)
     df["revenue"] = df["revenue"].replace(0, np.nan)
