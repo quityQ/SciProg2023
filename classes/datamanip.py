@@ -9,6 +9,7 @@ def extractDict(input):
     tempList = []
     input = str(input).replace("[","")
     input = str(input).replace("]","")
+    input = str(input).replace('"','')
     if input == "":
         return 
     dictentry = input
@@ -38,5 +39,6 @@ def cleanup(df):
     df["vote_count"] = df["vote_count"].replace(0,np.nan)
     df["genres"] = df["genres"].apply(extractDict)
     df["production_companies"] = df["production_companies"].apply(extractDict)
+    df["production_countries"] = df["production_countries"].apply(extractDict)
     df["spoken_languages"] = df["spoken_languages"].apply(extractDict)
     return df
