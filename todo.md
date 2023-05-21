@@ -6,7 +6,7 @@
     - clean up the array so they only have the relevant points
     - replace unavailable data with proper nulls
 - Adapt jupyter notebook to use data from DB
-    - use buckets to address extreme outliers
+    - use bins to address extreme outliers
 
 
 # Minimal Requirements
