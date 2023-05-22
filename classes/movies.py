@@ -81,7 +81,6 @@ def downloadMoviesInChunks(dfidlist, chunksize, startchunk=0):
             chunk = dfidlist.iloc[i:i+chunksize]
             chunkcount += 1
             print(f"processing chunk {chunkcount}/{numOfChunks}")
-            df.concat(downloadMovies(chunk.shape[0], chunk))
-    
-    return df
+            df = pd.concat(df, downloadMovies(chunk.shape[0], chunk))
+            return df, chunkcount
     
