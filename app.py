@@ -2,10 +2,10 @@ import classes.movies as mov
 import classes.database as db
 import classes.datamanip as dm 
 
-table_name = "all_movies"
-chunksize = 100
+table_name = input("Enter table name: ")
+chunksize = eval(input("Enter chunksize: "))
 dfidlist = mov.downloadIDlist()
-startchunk = 0
+startchunk = eval(input("Enter startchunk (0 if first time): "))
 print("ID list downloaded")
 
 numOfChunks = round(dfidlist.shape[0] // chunksize) + 1
