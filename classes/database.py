@@ -67,10 +67,10 @@ def getMovieData():
 
 
 
-def createMoviesTable():
+def createMoviesTable(table_name):
     cursor = connection.cursor()    
     try:
-        create_table_query = """CREATE TABLE IF NOT EXISTS movies
+        create_table_query = f"""CREATE TABLE IF NOT EXISTS {table_name}
               (id SERIAL PRIMARY KEY,
               title TEXT,
               budget BIGINT,
