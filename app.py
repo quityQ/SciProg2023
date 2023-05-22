@@ -3,7 +3,7 @@ import classes.database as db
 import classes.datamanip as dm 
 
 table_name = input("Enter table name: ")
-chunksize = eval(input("Enter chunksize: "))
+chunksize = eval(input("Enter chunksize (e.g. 1000): "))
 startchunk = eval(input("Enter startchunk (0 if first time): "))
 dfidlist = mov.downloadIDlist()
 print("ID list downloaded")
