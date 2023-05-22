@@ -39,12 +39,10 @@ def testConnection():
             connection.close()
             print("PostgreSQL connection is closed")
 
-
-# todo take df as argument
-def uploadMovieData(df):
+def uploadMovieData(df, table_name):
     cursor = connection.cursor()
     try:
-        df.to_sql("movies", engine, if_exists="append", index=False)
+        df.to_sql(table_name, engine, if_exists="append", index=False)
         print("Data uploaded")
     except (Exception, psycopg2.Error) as error:
         print("Error while uploading data", error)
@@ -97,10 +95,10 @@ def createMoviesTable(table_name):
         if cursor:
             cursor.close()
 
-def dropMoviesTable():
+def dropMoviesTable(table_name):
     cursor = connection.cursor()    
     try:
-        drop_table_query = """DROP TABLE movies"""
+        drop_table_query = f"""DROP TABLE {table_name}"""
         cursor.execute(drop_table_query)
         connection.commit()
         print("Table dropped")

@@ -1,7 +1,7 @@
 import tmdbsimple as tmdb
 import pandas as pd
 import datetime
-import tqdm
+from tqdm import tqdm
 
 tmdb.API_KEY = "60dde32875c0d3c5679496aba9fb3465"
 tmdb.REQUESTS_TIMEOUT = 10
@@ -12,8 +12,6 @@ day = str(datetime.datetime.now().day - 1).zfill(2)
 month = str(datetime.datetime.now().month).zfill(2)
 year = str(datetime.datetime.now().year).zfill(4)
 
-
-df = pd.DataFrame()
 URL = f"http://files.tmdb.org/p/exports/movie_ids_{month}_{day}_{year}.json.gz"
 
 def downloadIDlist():  
@@ -23,6 +21,7 @@ def downloadIDlist():
 
 
 def downloadMovies(numberOfMovies, dfidlist):
+    df = pd.DataFrame()
     for i in tqdm(dfidlist["id"].head(numberOfMovies), total=numberOfMovies):
         movie = tmdb.Movies(i)
         response = movie.info()
