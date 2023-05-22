@@ -3,7 +3,7 @@ import classes.database as db
 import classes.datamanip as dm 
 
 table_name = "all_movies"
-chunksize = 10000
+chunksize = 100
 dfidlist = mov.downloadIDlist()
 startchunk = 0
 print("ID list downloaded")
@@ -25,7 +25,6 @@ for i in range(numOfChunks):
     print("Cleaning data")
     df = dm.cleanup(df)
     print("Data cleaned")
-
     db.connect()
     print("Uploading data")
     db.uploadMovieData(df, table_name)
