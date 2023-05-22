@@ -4,8 +4,8 @@ import classes.datamanip as dm
 
 table_name = input("Enter table name: ")
 chunksize = eval(input("Enter chunksize: "))
-dfidlist = mov.downloadIDlist()
 startchunk = eval(input("Enter startchunk (0 if first time): "))
+dfidlist = mov.downloadIDlist()
 print("ID list downloaded")
 
 numOfChunks = round(dfidlist.shape[0] // chunksize) + 1
