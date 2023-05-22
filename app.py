@@ -11,9 +11,12 @@ numOfChunks = round(dfidlist.shape[0] // chunksize) + 1
 
 print(f"There will be {numOfChunks} chunks")
 
+
+db.connect()
 print("Creating table")
 db.createMoviesTable(table_name)
 print("Table created")
+db.shutdown()
 
 for i in range(numOfChunks):
     print("Downloading movies")
@@ -23,6 +26,9 @@ for i in range(numOfChunks):
     df = dm.cleanup(df)
     print("Data cleaned")
 
+    db.connect()
     print("Uploading data")
     db.uploadMovieData(df, table_name)
     print("Data uploaded")
+    db.shutdown()
+
