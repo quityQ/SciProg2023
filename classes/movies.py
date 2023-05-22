@@ -20,9 +20,9 @@ def downloadIDlist():
     return dfidlist
 
 
-def downloadMovies(numberOfMovies, dfidlist):
+def downloadMovies(numberOfMovies, idlist):
     df = pd.DataFrame()
-    for i in tqdm(dfidlist["id"].head(numberOfMovies), total=numberOfMovies):
+    for i in tqdm(idlist["id"].head(numberOfMovies), total=numberOfMovies):
         movie = tmdb.Movies(i)
         response = movie.info()
         tempdf = pd.DataFrame(
@@ -68,3 +68,20 @@ def downloadMovies(numberOfMovies, dfidlist):
         df = pd.concat([df, tempdf], ignore_index=True)
 
     return df
+
+def downloadMoviesInChunks(dfidlist, chunksize, startchunk=0):
+    df = pd.DataFrame()
+    chunkcount = 0
+    numOfChunks = round(dfidlist.shape[0] // chunksize) + 1
+    for i in range(0, dfidlist.shape[0], chunksize):
+        if startchunk > chunkcount:
+            chunkcount += 1
+            print(f"skipping chunk {chunkcount}/{numOfChunks}")
+        else:    
+            chunk = dfidlist.iloc[i:i+chunksize]
+            chunkcount += 1
+            print(f"processing chunk {chunkcount}/{numOfChunks}")
+            df.concat(downloadMovies(chunk.shape[0], chunk))
+    
+    return df
+    
