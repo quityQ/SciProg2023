@@ -9,7 +9,6 @@ def extractDict(input):
     tempList = []
     input = str(input).replace("[","")
     input = str(input).replace("]","")
-    input = str(input).replace('"','')
     if input == "":
         return 
     dictentry = input
