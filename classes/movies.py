@@ -4,7 +4,7 @@ import datetime
 from tqdm import tqdm
 
 tmdb.API_KEY = "60dde32875c0d3c5679496aba9fb3465"
-tmdb.REQUESTS_TIMEOUT = 10
+tmdb.REQUESTS_TIMEOUT = 60
 
 
 

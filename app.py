@@ -4,7 +4,7 @@ import classes.datamanip as dm
 
 table_name = input("Enter table name: ")
 chunksize = eval(input("Enter chunksize: "))
-startchunk = eval(input("Enter startchunk (0 if first time): "))
+startchunk = eval(input("Enter startchunk (0 if first time): ")) - 1
 dfidlist = mov.downloadIDlist()
 print("ID list downloaded")
 
@@ -21,7 +21,6 @@ db.shutdown()
 for i in range(numOfChunks):
     print("Downloading movies")
     df, startchunk = mov.downloadMoviesInChunks(dfidlist, chunksize, startchunk)
-
     print("Cleaning data")
     df = dm.cleanup(df)
     print("Data cleaned")
@@ -30,4 +29,3 @@ for i in range(numOfChunks):
     db.uploadMovieData(df, table_name)
     print("Data uploaded")
     db.shutdown()
-
