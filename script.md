@@ -12,3 +12,4 @@
 7. Talk about uploading the data to a database
 8. Talk about & show the analysis
     - we use the data from the database to do the analysis
+9. Conclusion
