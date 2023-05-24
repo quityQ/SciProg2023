@@ -50,11 +50,11 @@ def uploadMovieData(df, table_name):
         if cursor:
             cursor.close()
 
-def getMovieData():
+def getMovieData(table_name):
     cursor = connection.cursor()
     df = pd.DataFrame()
     try:
-        df = pd.read_sql_table("movies", getConn)
+        df = pd.read_sql_table(table_name, getConn)
         print("Data downloaded")
     except (Exception, psycopg2.Error) as error:
         print("Error while downloading data", error)
