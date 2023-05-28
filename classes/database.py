@@ -2,9 +2,6 @@ import psycopg2
 import pandas as pd
 from sqlalchemy import create_engine
 
-
-
-
 def connect():
     global connection
     global engine
