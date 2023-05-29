@@ -1,22 +1,23 @@
 import psycopg2
 import pandas as pd
+from dotenv import dotenv_values
 from sqlalchemy import create_engine
+
+secrets = dotenv_values("secrets.env")
 
 def connect():
     global connection
     global engine
     global getConn
     connection = psycopg2.connect(
-        user="bicicayb",
-        password="sIrAKRSC",
+        user=secrets["user"],
+        password=secrets["password"],
         host="db-moviedata.cxqntpnwnjaq.eu-north-1.rds.amazonaws.com",
         port="5432",
         database="postgres",
     )
-    engine = create_engine(
-        "postgresql+psycopg2://bicicayb:sIrAKRSC@db-moviedata.cxqntpnwnjaq.eu-north-1.rds.amazonaws.com:5432/postgres"
-    )
-
+    engine = create_engine(secrets["engine"])
+    
     getConn = engine.connect()
 
 # Testing connectoin to DB

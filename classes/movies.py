@@ -2,10 +2,12 @@ import tmdbsimple as tmdb
 import pandas as pd
 import datetime
 from tqdm import tqdm
+from dotenv import dotenv_values
 
-tmdb.API_KEY = "60dde32875c0d3c5679496aba9fb3465"
+
+secrets = dotenv_values("secrets.env")
+tmdb.API_KEY = secrets["API_KEY"]
 tmdb.REQUESTS_TIMEOUT = 60
-
 
 
 day = str(datetime.datetime.now().day - 1).zfill(2)
