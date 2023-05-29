@@ -163,3 +163,4 @@ cython_debug/
 SciProg2023.code-workspace
 .vscode/
 .DS_Store
+.env
